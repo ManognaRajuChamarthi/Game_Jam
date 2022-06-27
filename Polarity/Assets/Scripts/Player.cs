@@ -9,7 +9,10 @@ public class Player : MonoBehaviour
     private float polarity = 1;
     private Rigidbody rb;
 
-    public bool isGrounded; 
+    public bool isGrounded;
+
+    public GameManager gameManager;
+    public ParticleSystem sparks;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +30,15 @@ public class Player : MonoBehaviour
         }
         
         Polarity();
+
+        /*if (transform.position.y > 4f)
+        {
+            transform.position = new Vector3(transform.position.x, 3.9f , transform.position.z);
+        }
+        else if (transform.position.y < -4f)
+        {
+            transform.position = new Vector3(transform.position.x, -3.9f , transform.position.z);
+        }*/
     }
 
     void OnCollisionStay(Collision collision)
@@ -51,6 +63,18 @@ public class Player : MonoBehaviour
             //becomes able to hit enemies.
             Debug.Log("I am right clicking");
         }
+
+    }
+
+    private void OnCollisionEnter(Collision collisionInfo)
+    {   
+        /*if(collisionInfo.collider.name != "Ground")
+        {
+            gameManager.GameOver();
+        }*/
+
+        gameManager.GameOver();
+        sparks.Play();
 
     }
 
