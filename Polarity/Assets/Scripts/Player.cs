@@ -13,10 +13,14 @@ public class Player : MonoBehaviour
 
     public GameManager gameManager;
     public ParticleSystem sparks;
+    //public AudioClip clang;
+    //public AudioClip sparkS;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        //GetComponent<AudioSource>().clip = sparkS;
+        //GetComponent<AudioSource>().clip = clang;
     }
 
     // Update is called once per frame
@@ -46,6 +50,8 @@ public class Player : MonoBehaviour
         isGrounded = true;
     }
 
+    
+
     public void Polarity()
     {
         //get input for polarity change
@@ -67,14 +73,15 @@ public class Player : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision collisionInfo)
-    {   
-        /*if(collisionInfo.collider.name != "Ground")
+    {
+        sparks.Play();
+        
+        if(collisionInfo.collider.tag != "Ground")
         {
             gameManager.GameOver();
-        }*/
+        }
 
-        gameManager.GameOver();
-        sparks.Play();
+        //gameManager.GameOver();
 
     }
 

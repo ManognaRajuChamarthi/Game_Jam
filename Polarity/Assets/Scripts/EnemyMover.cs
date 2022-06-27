@@ -13,4 +13,6 @@ public class EnemyMover : MonoBehaviour
     {
         transform.position += Vector3.left * obstacleSpeed * Time.deltaTime;
     }
+
+    
 }
